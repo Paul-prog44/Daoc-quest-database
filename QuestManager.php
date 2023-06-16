@@ -18,9 +18,23 @@ class QuestManager {
         }
 
     }
-
+        //Préparation de la requête SQL avec des données vides
         public function create(Quest $quest) {
+            $req = $this->db->prepare("INSERT INTO `quest` (name, minimum_level, maximum_level, number_players, starting_area, starting_npc, reward, realm, user_id) VALUES (:name, :minimum_level, : maximum_level, :number_players, :starting_area, :starting_npc, :reward, :realm, :user_id ");
+        
+            //On hydrate ces données
+            $req->bindValue(":name", $quest->getName());
+            $req->bindValue(":minimum_level", $quest->getMinimumLevel()); 
+            $req->bindValue(":maximum_level", $quest->getMaximumLevel()); 
+            $req->bindValue(":number_players", $quest->getNumberPlayers()); 
+            $req->bindValue(":starting_area", $quest->getStartingArea()); 
+            $req->bindValue(":starting_npc", $quest->getStartingNpc()); 
+            $req->bindValue(":reward", $quest->getReward()); 
+            $req->bindValue(":realm", $quest->getRealm());
+            $req->bindValue(":user_id", $quest->getUserId());  
             
+            //Execution de la requête
+            $req->execute();
         }
 
         public function update(int $questId) {
@@ -28,6 +42,10 @@ class QuestManager {
         }
 
         public function getByID(int $questId) {
+            
+        }
+
+        public function getAllByString(string $input) {
             
         }
 

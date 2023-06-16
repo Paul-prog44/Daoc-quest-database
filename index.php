@@ -17,13 +17,21 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Acceuil</a>
+                    <a class="nav-link active" aria-current="page" href="#">Acceuil</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Liens</a>
+                    <a class="nav-link" href="#">Liens</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link">Quêtes</a>
+                    <a class="nav-link">Quêtes</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Realms</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Albion</a></li>
+                        <li><a class="dropdown-item" href="#">Midgard</a></li>
+                        <li><a class="dropdown-item" href="#">Hibernia</a></li>
+                    </ul>
                 </li>
             </ul>
             <form class="d-flex" role="search">
