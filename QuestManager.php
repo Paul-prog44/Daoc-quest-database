@@ -20,7 +20,7 @@ class QuestManager {
     }
         //Préparation de la requête SQL avec des données vides
         public function create(Quest $quest) {
-            $req = $this->db->prepare("INSERT INTO `quest` (name, minimum_level, maximum_level, number_players, starting_area, starting_npc, reward, realm, user_id) VALUES (:name, :minimum_level, : maximum_level, :number_players, :starting_area, :starting_npc, :reward, :realm, :user_id ");
+            $req = $this->db->prepare("INSERT INTO `quest` (name, minimum_level, maximum_level, number_players, starting_area, starting_npc, reward, realm, user_id, image) VALUES (:name, :minimum_level, : maximum_level, :number_players, :starting_area, :starting_npc, :reward, :realm, :user_id, :image ");
         
             //On hydrate ces données
             $req->bindValue(":name", $quest->getName());
@@ -31,14 +31,15 @@ class QuestManager {
             $req->bindValue(":starting_npc", $quest->getstarting_npc()); 
             $req->bindValue(":reward", $quest->getReward()); 
             $req->bindValue(":realm", $quest->getRealm());
-            $req->bindValue(":user_id", $quest->getuser_id());    
+            $req->bindValue(":user_id", $quest->getuser_id());
+            $req->bindValue(":image", $quest->getImage());     
             
             //Execution de la requête
             $req->execute();
         }
 
         public function update(QUEST $quest) {
-            $req = $this->db->prepare("UPDATE `quest` SET name = :name, minimum_level =:minimum_level, maximum_level = :maximum_level, number_players = :number_players , starting_area = :starting_area , starting_npc = :starting_npc , reward= :reward , realm = :realm , user_id = :user_id");
+            $req = $this->db->prepare("UPDATE `quest` SET name = :name, minimum_level =:minimum_level, maximum_level = :maximum_level, number_players = :number_players , starting_area = :starting_area , starting_npc = :starting_npc , reward= :reward , realm = :realm , user_id = :user_id, image = :image");
             
             $req->bindValue(":name", $quest->getName());
             $req->bindValue(":minimum_level", $quest->getminimum_level()); 
@@ -48,7 +49,8 @@ class QuestManager {
             $req->bindValue(":starting_npc", $quest->getstarting_npc()); 
             $req->bindValue(":reward", $quest->getReward()); 
             $req->bindValue(":realm", $quest->getRealm());
-            $req->bindValue(":user_id", $quest->getuser_id());  
+            $req->bindValue(":user_id", $quest->getuser_id()); 
+            $req->bindValue(":image", $quest->getImage());  
         
             $req->execute();
         }

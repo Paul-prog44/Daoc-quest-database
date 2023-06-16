@@ -10,7 +10,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/logodaoc.png" width="100px" alt="logo daoc database quest"> </a>
+            <a class="navbar-brand" href="./index.php"><img src="img/logodaoc.png" width="100px" alt="logo daoc database quest"> </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -45,52 +45,57 @@
     <?php
         require_once('QuestManager.php');
         $manager = new QuestManager;
+
+        if($_POST) {
+            $name=$_POST["name"];
+            $minimum_level=$_POST["minimum_level"];
+            $maximum_level=$_POST["maximum_level"];
+            $number_players=$_POST["number_players"];
+            $starting_area=$_POST["starting_area"];
+            $starting_npc=$_POST["starting_npc"];
+            $reward=$_POST["reward"];
+            $realm=$_POST["realm"];
+        }
     ?>
+
     <main class="container">
-        <form method="post" enctype="multipart/form-data">
-            <div class="mb-3">
+        <form method="POST" enctype="multipart/form-data">
+            
                 <label for="name" class="form-label">Quest name :</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name">
-            </div>
-            <div class="mb-3">
+                <input type="text" class="form-control" id="name" aria-describedby="name" name="name">
+            
+            
                 <label for="minimum_level" class="form-label">Minimum level : </label>
-                <input type="number" class="form-control" id="minimum_level" min=1 max=50>
-            </div>
-            <div class="mb-3">
+                <input type="number" class="form-control" id="minimum_level" min=1 max=50 name="minimum_level">
+            
+            
                 <label for="maximum_level" class="form-label">Maximum level :</label>
-                <input type="number" class="form-control" id="maximum_level" min=1 max=50>
-            </div>
-            <div class="mb-3">
+                <input type="number" class="form-control" id="maximum_level" min=1 max=50 name="maximum_level">
+
                 <label for="number_players" class="form-label">Required number of players :</label>
-                <input type="number" class="form-control" id="number_players">
-            </div>
-            <div class="mb-3">
+                <input type="number" class="form-control" id="number_players" name="number_players">
+
                 <label for="starting_area" class="form-label">Quest area :</label>
-                <input type="text" class="form-control" id="starting_area" placeholder="Where can the quest be taken ?">
-            </div>
-            <div class="mb-3">
+                <input type="text" class="form-control" id="starting_area" name="starting_area" placeholder="Where can the quest be taken ?">
+
                 <label for="starting_npc" class="form-label">Which NPC hands out the quest ?</label>
-                <input type="text" class="form-control" id="starting_npc">
-            </div>
-            <div class="mb-3">
+                <input type="text" class="form-control" id="starting_npc" name="starting_npc">
+
                 <label for="reward" class="form-label">Reward :</label>
-                <input type="text" class="form-control" id="reward" placeholder="Experience, objects ?">
-            </div>
-            <div class="mb-3">
-                <label for="cars" class="form-label">Choose a realm:</label>
-                    <select id="realm" name="realm">
-                        <option value="Albion" class="form-label">Albion</option>
-                        <option value="Midgard">Midgard</option>
-                        <option value="Hibernia">Hibernia</option>
-                    </select>
-            </div>
-            <div class="mb-3">
+                <input type="text" class="form-control" id="reward" name="reward" placeholder="Experience, objects ?">
+
+                <select class="form-select" aria-label="Default select example" name="realm">
+                    <option selected>Select a realm</option>
+                    <option value="Albion">Albion</option>
+                    <option value="Midgard">Midgard</option>
+                    <option value="Hibernia">Hibernia</option>
+                </select>
+                
                 <label for="reward" class="form-label">Image :</label>
-                <input type="file" name="image" id="image" class="form-control">
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+                <input type="file" name="image" id="image" name="image" class="form-control">
+            
+                <button type="submit" class="btn btn-primary">Créer</button>
+            
         </form>
     </main>
 </body>
