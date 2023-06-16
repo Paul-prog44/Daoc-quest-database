@@ -41,19 +41,40 @@ class QuestManager {
 
         }
 
-        public function getByID(int $questId) {
-            
+        public function getByID(int $quest_id) {
+            $req = $this->db->prepare("SELECT * FROM `quest` WHERE quest_id = :quest_id");
+            $req->bindValue(":id", $quest_id);
+
+            $data = $req->fetch();
+            $quest = new Quest($data);
+
+            return $quest;
         }
 
         public function getAllByString(string $input) {
-            
+            $quests = [];
+            $req = $this->db->query("SELECT * FROM `quest`WHERE name LIKE :input ORDER BY quest_id");
+            $req->bindValue(":input", $input);
+            $datas = $req->fetchAll();
+            foreach ($datas as $data) {
+                $quest = new Quest($data);
+                $quests[] = $quest;
+            }
+            return $quests;
         }
 
         public function getAll() {
-            
+            $quests = [];
+            $req = $this->db->query("SELECT * FROM `quest` ORDER BY quest_id");
+            $datas = $req->fetchAll();
+            foreach ($datas as $data) {
+                $quest = new Quest($data);
+                $quests[] = $quest;
+            }
+            return $quests;
         }
 
         public function delete(int $questId) {
-
+            
         }
 }
