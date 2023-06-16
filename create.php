@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <title>Daoc quest database</title>
+    <title>Ajouter une quête</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -44,24 +44,54 @@
 
     <?php
         require_once('QuestManager.php');
-
         $manager = new QuestManager;
-        $AllQuests = $manager->getAllQuests();
     ?>
-
-    <main class="m-5 d-flex">
-        <?php foreach ($AllQuests as $quest): ?>
-                <div class="card m-5 p-2" style="width: 20rem;" >
-                    <img src="img/officialdaoc-profile_image-c01c7d16cf7e08cd-300x300.png" class="card-img-top" alt="default daoc logo">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $quest->getName(); ?></h5>
-                        <p class="card-text">Level : <?= $quest->getminimum_level()." - ".$quest->getmaximum_level() ; ?></p>
-                        <a href="#" class="btn btn-primary">See details</a>
-                    </div>
-                </div>
-            
-        <?php endforeach ?>
+    <main class="container">
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="name" class="form-label">Quest name :</label>
+                <input type="text" class="form-control" id="name" aria-describedby="name">
+            </div>
+            <div class="mb-3">
+                <label for="minimum_level" class="form-label">Minimum level : </label>
+                <input type="number" class="form-control" id="minimum_level" min=1 max=50>
+            </div>
+            <div class="mb-3">
+                <label for="maximum_level" class="form-label">Maximum level :</label>
+                <input type="number" class="form-control" id="maximum_level" min=1 max=50>
+            </div>
+            <div class="mb-3">
+                <label for="number_players" class="form-label">Required number of players :</label>
+                <input type="number" class="form-control" id="number_players">
+            </div>
+            <div class="mb-3">
+                <label for="starting_area" class="form-label">Quest area :</label>
+                <input type="text" class="form-control" id="starting_area" placeholder="Where can the quest be taken ?">
+            </div>
+            <div class="mb-3">
+                <label for="starting_npc" class="form-label">Which NPC hands out the quest ?</label>
+                <input type="text" class="form-control" id="starting_npc">
+            </div>
+            <div class="mb-3">
+                <label for="reward" class="form-label">Reward :</label>
+                <input type="text" class="form-control" id="reward" placeholder="Experience, objects ?">
+            </div>
+            <div class="mb-3">
+                <label for="cars" class="form-label">Choose a realm:</label>
+                    <select id="realm" name="realm">
+                        <option value="Albion" class="form-label">Albion</option>
+                        <option value="Midgard">Midgard</option>
+                        <option value="Hibernia">Hibernia</option>
+                    </select>
+            </div>
+            <div class="mb-3">
+                <label for="reward" class="form-label">Image :</label>
+                <input type="file" name="image" id="image" class="form-control">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
     </main>
-    <a href="./create.php" class="btn btn-success m-5">Ajouter une quête</a>
 </body>
 </html>

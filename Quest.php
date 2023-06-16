@@ -1,16 +1,16 @@
 <?php
 
 class Quest {
-    private $questId;
+    private $quest_id;
     private $name;
-    private $minimumLevel;
-    private $maximumLevel;
-    private $numberPlayers;
-    private $startingArea;
-    private $startingNpc;
+    private $minimum_level;
+    private $maximum_level;
+    private $number_players;
+    private $starting_area;
+    private $starting_npc;
     private $reward;
     private $realm;
-    private $userId;
+    private $user_id;
 
 
     public function __construct(array $data) {
@@ -31,21 +31,21 @@ class Quest {
     }
 
     /**
-     * Get the value of questId
+     * Get the value of quest_id
      */ 
-    public function getQuestId()
+    public function getquest_id()
     {
-        return $this->questId;
+        return $this->quest_id;
     }
 
     /**
-     * Set the value of questId
+     * Set the value of quest_id
      *
      * @return  self
      */ 
-    public function setQuestId($questId)
+    public function setquest_id($quest_id)
     {
-        $this->questId = $questId;
+        $this->quest_id = $quest_id;
 
         return $this;
     }
@@ -73,9 +73,9 @@ class Quest {
     /**
      * Get the value of minimumLevel
      */ 
-    public function getMinimumLevel()
+    public function getminimum_level()
     {
-        return $this->minimumLevel;
+        return $this->minimum_level;
     }
 
     /**
@@ -83,109 +83,109 @@ class Quest {
      *
      * @return  self
      */ 
-    public function setMinimumLevel($minimumLevel)
+    public function setminimum_level($minimum_level)
     {
-        $this->minimumLevel = $minimumLevel;
+        $this->minimum_level = $minimum_level;
 
         return $this;
     }
 
     /**
-     * Get the value of userId
+     * Get the value of user_id
      */ 
-    public function getUserId()
+    public function getuser_id()
     {
-        return $this->userId;
+        return $this->user_id;
     }
 
     /**
-     * Set the value of userId
+     * Set the value of user_id
      *
      * @return  self
      */ 
-    public function setUserId($userId)
+    public function setuser_id($user_id)
     {
-        $this->userId = $userId;
+        $this->user_id = $user_id;
 
         return $this;
     }
 
     /**
-     * Get the value of maximumLevel
+     * Get the value of maximum_level
      */ 
-    public function getMaximumLevel()
+    public function getmaximum_level()
     {
-        return $this->maximumLevel;
+        return $this->maximum_level;
     }
 
     /**
-     * Set the value of maximumLevel
+     * Set the value of maximum_level
      *
      * @return  self
      */ 
-    public function setMaximumLevel($maximumLevel)
+    public function setmaximum_level($maximum_level)
     {
-        $this->maximumLevel = $maximumLevel;
+        $this->maximum_level = $maximum_level;
 
         return $this;
     }
 
     /**
-     * Get the value of numberPlayers
+     * Get the value of number_players
      */ 
-    public function getNumberPlayers()
+    public function getnumber_players()
     {
-        return $this->numberPlayers;
+        return $this->number_players;
     }
 
     /**
-     * Set the value of numberPlayers
+     * Set the value of number_players
      *
      * @return  self
      */ 
-    public function setNumberPlayers($numberPlayers)
+    public function setnumber_players($number_players)
     {
-        $this->numberPlayers = $numberPlayers;
+        $this->number_players = $number_players;
 
         return $this;
     }
 
     /**
-     * Get the value of startingArea
+     * Get the value of starting_area
      */ 
-    public function getStartingArea()
+    public function getstarting_area()
     {
-        return $this->startingArea;
+        return $this->starting_area;
     }
 
     /**
-     * Set the value of startingArea
+     * Set the value of starting_area
      *
      * @return  self
      */ 
-    public function setStartingArea($startingArea)
+    public function setstarting_area($starting_area)
     {
-        $this->startingArea = $startingArea;
+        $this->starting_area = $starting_area;
 
         return $this;
     }
 
     /**
-     * Get the value of startingNpc
+     * Get the value of starting_npc
      */ 
-    public function getStartingNpc()
+    public function getstarting_npc()
     {
-        return $this->startingNpc;
+        return $this->starting_npc;
     }
 
     /**
-     * Set the value of startingNpc
+     * Set the value of starting_npc
      *
      * @return  self
      */ 
-    public function setStartingNpc($startingNpc)
+    public function setstarting_npc($starting_npc)
     {
-        $this->startingNpc = $startingNpc;
+        $this->starting_npc = $starting_npc;
 
         return $this;
     }

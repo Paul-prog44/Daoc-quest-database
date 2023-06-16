@@ -1,5 +1,5 @@
 <?php
-
+require 'Quest.php';
 
 //Class permettant la connexion à la bdd
 class QuestManager {
@@ -24,21 +24,33 @@ class QuestManager {
         
             //On hydrate ces données
             $req->bindValue(":name", $quest->getName());
-            $req->bindValue(":minimum_level", $quest->getMinimumLevel()); 
-            $req->bindValue(":maximum_level", $quest->getMaximumLevel()); 
-            $req->bindValue(":number_players", $quest->getNumberPlayers()); 
-            $req->bindValue(":starting_area", $quest->getStartingArea()); 
-            $req->bindValue(":starting_npc", $quest->getStartingNpc()); 
+            $req->bindValue(":minimum_level", $quest->getminimum_level()); 
+            $req->bindValue(":maximum_level", $quest->getmaximum_level()); 
+            $req->bindValue(":number_players", $quest->getnumber_players()); 
+            $req->bindValue(":starting_area", $quest->getstarting_area()); 
+            $req->bindValue(":starting_npc", $quest->getstarting_npc()); 
             $req->bindValue(":reward", $quest->getReward()); 
             $req->bindValue(":realm", $quest->getRealm());
-            $req->bindValue(":user_id", $quest->getUserId());  
+            $req->bindValue(":user_id", $quest->getuser_id());    
             
             //Execution de la requête
             $req->execute();
         }
 
-        public function update(int $questId) {
-
+        public function update(QUEST $quest) {
+            $req = $this->db->prepare("UPDATE `quest` SET name = :name, minimum_level =:minimum_level, maximum_level = :maximum_level, number_players = :number_players , starting_area = :starting_area , starting_npc = :starting_npc , reward= :reward , realm = :realm , user_id = :user_id");
+            
+            $req->bindValue(":name", $quest->getName());
+            $req->bindValue(":minimum_level", $quest->getminimum_level()); 
+            $req->bindValue(":maximum_level", $quest->getmaximum_level()); 
+            $req->bindValue(":number_players", $quest->getnumber_players()); 
+            $req->bindValue(":starting_area", $quest->getstarting_area()); 
+            $req->bindValue(":starting_npc", $quest->getstarting_npc()); 
+            $req->bindValue(":reward", $quest->getReward()); 
+            $req->bindValue(":realm", $quest->getRealm());
+            $req->bindValue(":user_id", $quest->getuser_id());  
+        
+            $req->execute();
         }
 
         public function getByID(int $quest_id) {
@@ -49,6 +61,18 @@ class QuestManager {
             $quest = new Quest($data);
 
             return $quest;
+        }
+
+        public function getAllQuests() {
+            $quests = [];
+            $req = $this->db->query("SELECT * FROM `quest`");
+            $datas = $req->fetchAll();
+            foreach ($datas as $data) {
+                $quest = new Quest($data);
+                $quests[] = $quest;
+                
+            }
+            return $quests;
         }
 
         public function getAllByString(string $input) {
@@ -63,9 +87,10 @@ class QuestManager {
             return $quests;
         }
 
-        public function getAll() {
+        public function getAllByRealm(string $realm) {
             $quests = [];
-            $req = $this->db->query("SELECT * FROM `quest` ORDER BY quest_id");
+            $req = $this->db->query("SELECT * FROM `quest` WHERE realm LIKE :realm");
+            $req->bindValue(":realm", $realm);
             $datas = $req->fetchAll();
             foreach ($datas as $data) {
                 $quest = new Quest($data);
@@ -74,7 +99,12 @@ class QuestManager {
             return $quests;
         }
 
-        public function delete(int $questId) {
-            
+        public function delete(int $quest_id) {
+            $req = $this->db->prepare("DELETE FROM `quest` WHERE quest_id = :quest_id ");
+            $req->bindValue(":quest_id", $quest_id);
+            $req->execute();
         }
+
+        
 }
+
