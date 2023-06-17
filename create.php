@@ -16,7 +16,6 @@
             $reward=$_POST["reward"];
             $realm=$_POST["realm"];
             $userId=1;
-
         
                 try {
                     //Check size size
@@ -32,17 +31,18 @@
                         $fileExtension = pathinfo($targetFile, PATHINFO_EXTENSION);
         
                         //Check file type
-                        $acceptedExtensions = ["png", "jpg", "jpeg"];
+                        $acceptedExtensions = ["png", "jpg", "jpeg", "webp"];
                         if (in_array(strtolower($fileExtension), $acceptedExtensions)) {
                             //Attempt to move file to upload folder
                             if(move_uploaded_file( $_FILES["image"]["tmp_name"], $targetFile)) {
                                 $imageName=$fileName;
-                                $QuestManager->create([$name, $minimum_level, $maximum_level, $number_players, $starting_area, $starting_npc, $reward, $realm, $userId, $imageName]);//!HANDLE IMAGE FILE
+                                $QuestManager->create([$name, $minimum_level, $maximum_level, $number_players, $starting_area, $starting_npc, $reward, $realm, $userId, $imageName]);
+                                echo "<p class='alert alert-success'>La quête a bien été ajoutée</p>";
                             } else {
                                 throw new Exception("Une erreur est survenue.");
                             }
                         } else {
-                            throw new Exception("Le format du fichier n'est pas valide, format pris en charge : png, jpg et jpeg");
+                            throw new Exception("Le format du fichier n'est pas valide, formats pris en charge : png, jpg, jpeg et webp");
                         }
                     } else {
                         throw new Exception("Le fichier ne peut excéder 2 MO.");
@@ -61,10 +61,10 @@
         <?php
         if ($error) {
             echo "<p class='alert alert-danger'>$error</p>";
-        }
+        } 
         ?>
 
-        <form method="POST" action="created.php" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             
                 <label for="name" class="form-label">Quest name :</label>
                 <input type="text" class="form-control" id="name" aria-describedby="name" name="name">

@@ -72,8 +72,7 @@ class QuestManager {
             $datas = $req->fetchAll();
             foreach ($datas as $data) {
                 $quest = new Quest($data);
-                $quests[] = $quest;
-                
+                $quests[] = $quest;    
             }
             return $quests;
         }
