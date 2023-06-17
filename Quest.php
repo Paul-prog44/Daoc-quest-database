@@ -31,25 +31,6 @@ class Quest {
         }
     }
 
-    /**
-     * Get the value of quest_id
-     */ 
-    public function getquest_id()
-    {
-        return $this->quest_id;
-    }
-
-    /**
-     * Set the value of quest_id
-     *
-     * @return  self
-     */ 
-    public function setquest_id($quest_id)
-    {
-        $this->quest_id = $quest_id;
-
-        return $this;
-    }
 
     /**
      * Get the value of name
@@ -247,6 +228,26 @@ class Quest {
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of quest_id
+     */ 
+    public function getQuest_id()
+    {
+        return $this->quest_id;
+    }
+
+    /**
+     * Set the value of quest_id
+     *
+     * @return  self
+     */ 
+    public function setQuest_id($quest_id)
+    {
+        $this->quest_id = $quest_id;
 
         return $this;
     }
