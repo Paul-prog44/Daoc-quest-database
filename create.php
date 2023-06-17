@@ -44,6 +44,8 @@
 
     <?php
         require_once('QuestManager.php');
+        require_once('ImagesManager.php');
+        
         $manager = new QuestManager;
 
         if($_POST) {
@@ -55,6 +57,11 @@
             $starting_npc=$_POST["starting_npc"];
             $reward=$_POST["reward"];
             $realm=$_POST["realm"];
+            var_dump($_FILES);
+
+            if ($_FILES["image"]['size'] < 2000000 ) {
+                $imagesManager = new ImagesManager;
+            }
         }
     ?>
 
@@ -84,6 +91,7 @@
                 <label for="reward" class="form-label">Reward :</label>
                 <input type="text" class="form-control" id="reward" name="reward" placeholder="Experience, objects ?">
 
+                <label for="realm" class="form-label">Realm :</label>
                 <select class="form-select" aria-label="Default select example" name="realm">
                     <option selected>Select a realm</option>
                     <option value="Albion">Albion</option>
