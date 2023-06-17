@@ -19,20 +19,21 @@ class QuestManager {
 
     }
         //Préparation de la requête SQL avec des données vides
-        public function create(Quest $quest) {
-            $req = $this->db->prepare("INSERT INTO `quest` (name, minimum_level, maximum_level, number_players, starting_area, starting_npc, reward, realm, user_id, image) VALUES (:name, :minimum_level, : maximum_level, :number_players, :starting_area, :starting_npc, :reward, :realm, :user_id, :image ");
+        public function create($quest) {
+            $req = $this->db->prepare("INSERT INTO `quest` (name, minimum_level, maximum_level, number_players, starting_area, starting_npc, reward, realm, user_id, image) VALUES (:name, :minimum_level, :maximum_level, :number_players, :starting_area, :starting_npc, :reward, :realm, :user_id, :image)");
         
             //On hydrate ces données
-            $req->bindValue(":name", $quest->getName());
-            $req->bindValue(":minimum_level", $quest->getminimum_level()); 
-            $req->bindValue(":maximum_level", $quest->getmaximum_level()); 
-            $req->bindValue(":number_players", $quest->getnumber_players()); 
-            $req->bindValue(":starting_area", $quest->getstarting_area()); 
-            $req->bindValue(":starting_npc", $quest->getstarting_npc()); 
-            $req->bindValue(":reward", $quest->getReward()); 
-            $req->bindValue(":realm", $quest->getRealm());
-            $req->bindValue(":user_id", $quest->getuser_id());
-            $req->bindValue(":image", $quest->getImage());     
+            // $req->bindValue(":quest_id", null);
+            $req->bindValue(":name", $quest[0]);
+            $req->bindValue(":minimum_level", $quest[1]); 
+            $req->bindValue(":maximum_level", $quest[2]); 
+            $req->bindValue(":number_players", $quest[3]); 
+            $req->bindValue(":starting_area", $quest[4]); 
+            $req->bindValue(":starting_npc", $quest[5]); 
+            $req->bindValue(":reward", $quest[6]); 
+            $req->bindValue(":realm", $quest[7]);
+            $req->bindValue(":user_id", $quest[8]);
+            $req->bindValue(":image", $quest[9]);
             
             //Execution de la requête
             $req->execute();
@@ -50,7 +51,7 @@ class QuestManager {
             $req->bindValue(":reward", $quest->getReward()); 
             $req->bindValue(":realm", $quest->getRealm());
             $req->bindValue(":user_id", $quest->getuser_id()); 
-            $req->bindValue(":image", $quest->getImage());  
+            // $req->bindValue(":image", $quest->getImage());  
         
             $req->execute();
         }
