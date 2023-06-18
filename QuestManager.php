@@ -79,7 +79,7 @@ class QuestManager {
 
         public function getAllByString(string $input) {
             $quests = [];
-            $req = $this->db->query("SELECT * FROM `quest`WHERE name LIKE :input ORDER BY quest_id");
+            $req = $this->db->query("SELECT * FROM `quest` WHERE name LIKE :input ORDER BY quest_id");
             $req->bindValue(":input", $input);
             $datas = $req->fetchAll();
             foreach ($datas as $data) {
@@ -89,15 +89,16 @@ class QuestManager {
             return $quests;
         }
 
-        public function getAllByRealm(string $realm) {
+        public function getAllByRealm($realm) {
             $quests = [];
-            $req = $this->db->query("SELECT * FROM `quest` WHERE realm LIKE :realm");
-            $req->bindValue(":realm", $realm);
+            $req = $this->db->prepare("SELECT * FROM `quest` WHERE realm = :realm");
+            $req->execute(["realm" => $realm]);
             $datas = $req->fetchAll();
             foreach ($datas as $data) {
                 $quest = new Quest($data);
                 $quests[] = $quest;
             }
+            
             return $quests;
         }
 

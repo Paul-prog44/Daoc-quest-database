@@ -29,7 +29,7 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Realms</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Albion</a></li>
-                        <li><a class="dropdown-item" href="#">Midgard</a></li>
+                        <li><a class="dropdown-item" href="midgard.php">Midgard</a></li>
                         <li><a class="dropdown-item" href="#">Hibernia</a></li>
                     </ul>
                 </li>
