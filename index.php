@@ -7,22 +7,18 @@
         $manager = new QuestManager;
         $AllQuests = $manager->getAllQuests();
     ?>
-
-    <main class="m-5 d-flex flex-wrap">
-        <?php foreach ($AllQuests as $quest): ?>
-                <div class="card m-5 p-2" style="width: 20rem;" >
-                    <img src="upload/<?= $quest->getImage();?>" class="card-img-top" alt="default daoc logo">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $quest->getName(); ?></h5>
-                        <p class="card-text">Level : <?= $quest->getminimum_level()." - ".$quest->getmaximum_level() ; ?></p>
-                        <a href="#" class="btn btn-primary">See details</a>
-                        <a href="./delete.php?id=<?= $quest->getQuest_iD()?>" class="btn btn-danger">Delete</a>
-                        
-                    </div>
+    <div>
+            <div class=" banners d-flex justify-content-evenly align-items-center">
+                <div class="banner">
+                    <a href="midgardQuests.php"><img src="img/1192614-midgard_banner.jpg"></a>
                 </div>
-            
-        <?php endforeach ?>
-    </main>
-    <a href="./create.php" class="btn btn-success m-5">Ajouter une quête</a>
+                <div class="banner">
+                    <a href="albionQuests.php"><img src="img/1192613-albion_banner.jpg"></a>
+                </div>
+                <div class="banner">
+                    <a href="hiberniaQuests.php"><img src="img/1192609-hibernia_banner.jpg"></a>
+                </div>
+            </div>
+        </div>
 </body>
 </html>

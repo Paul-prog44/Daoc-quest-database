@@ -17,7 +17,7 @@ require_once('QuestManager.php');
                     <div class="card-body">
                         <h5 class="card-title"><?= $quest->getName(); ?></h5>
                         <p class="card-text">Level : <?= $quest->getminimum_level()." - ".$quest->getmaximum_level() ; ?></p>
-                        <a href="#" class="btn btn-primary">See details</a>
+                        <a href="./questInfo.php?id=<?= $quest->getQuest_iD()?>" class="btn btn-primary">See details</a>
                         <a href="./delete.php?id=<?= $quest->getQuest_iD()?>" class="btn btn-danger">Delete</a>
                         
                     </div>

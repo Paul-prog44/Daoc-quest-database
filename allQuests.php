@@ -1,16 +1,12 @@
 <?php
-
-require('header.php');
-require_once('QuestManager.php');
+        require_once('header.php');
+        require_once('QuestManager.php');
 
         $manager = new QuestManager;
-        $realm = "Midgard";
-        $AllQuests = $manager->getAllByRealm($realm);
-        
-
-?>
-
-<main class="m-5 d-flex flex-wrap">
+        $AllQuests = $manager->getAllQuests();
+    ?>
+    
+    <main class="m-5 d-flex flex-wrap">
         <?php foreach ($AllQuests as $quest): ?>
                 <div class="card m-5 p-2" style="width: 20rem;" >
                     <img src="upload/<?= $quest->getImage();?>" class="card-img-top" alt="default daoc logo">
@@ -25,3 +21,4 @@ require_once('QuestManager.php');
             
         <?php endforeach ?>
     </main>
+    <a href="./create.php" class="btn btn-success m-5">Add a quest</a>
