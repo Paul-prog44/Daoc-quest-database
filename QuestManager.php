@@ -59,9 +59,8 @@ class QuestManager {
         public function getByID(int $quest_id) {
             $req = $this->db->prepare("SELECT * FROM `quest` WHERE quest_id = :quest_id");
             $req->execute(["quest_id" => $quest_id]);
-            $data = $req->fetchAll();
-            $quest = new Quest($data);
-            
+            $datas = $req->fetch();
+            $quest= new Quest($datas);
             return $quest;
         }
 
