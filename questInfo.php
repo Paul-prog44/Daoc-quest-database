@@ -19,10 +19,9 @@ $quest = $manager->getByID($QuestId);
     <li class="list-group-item">Reward : <?= $quest->getReward() ?></li>
 </ul>
 
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 30rem;">
   <img src="./upload/<?= $quest->getImage(); ?>" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Final boss</h5>
-    <p class="card-text">name of final boss</p>
   </div>
 </div>
+<a href="./delete.php?id=<?= $quest->getQuest_iD()?>" class="btn btn-danger">Delete</a>
