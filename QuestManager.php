@@ -39,21 +39,33 @@ class QuestManager {
             $req->execute();
         }
 
-        public function update(QUEST $quest) {
-            $req = $this->db->prepare("UPDATE `quest` SET name = :name, minimum_level =:minimum_level, maximum_level = :maximum_level, number_players = :number_players , starting_area = :starting_area , starting_npc = :starting_npc , reward= :reward , realm = :realm , user_id = :user_id, image = :image");
-            
-            $req->bindValue(":name", $quest->getName());
-            $req->bindValue(":minimum_level", $quest->getminimum_level()); 
-            $req->bindValue(":maximum_level", $quest->getmaximum_level()); 
-            $req->bindValue(":number_players", $quest->getnumber_players()); 
-            $req->bindValue(":starting_area", $quest->getstarting_area()); 
-            $req->bindValue(":starting_npc", $quest->getstarting_npc()); 
-            $req->bindValue(":reward", $quest->getReward()); 
-            $req->bindValue(":realm", $quest->getRealm());
-            $req->bindValue(":user_id", $quest->getuser_id()); 
-            // $req->bindValue(":image", $quest->getImage());  
+        public function update(int $quest_id, array $quest) {
+            $req = $this->db->prepare("UPDATE `quest` SET 
+            name = :name, 
+            minimum_level = :minimum_level, 
+            maximum_level = :maximum_level, 
+            number_players = :number_players, 
+            starting_area = :starting_area, 
+            starting_npc = :starting_npc, 
+            reward= :reward, 
+            realm = :realm, 
+            user_id = :user_id, 
+            image = :image 
+            WHERE quest_id = :quest_id" );
+
+
+            $req->bindValue(":name", $quest[0]);
+            $req->bindValue(":minimum_level", $quest[1]); 
+            $req->bindValue(":maximum_level", $quest[2]); 
+            $req->bindValue(":number_players", $quest[3]); 
+            $req->bindValue(":starting_area", $quest[4]); 
+            $req->bindValue(":starting_npc", $quest[5]); 
+            $req->bindValue(":reward", $quest[6]); 
+            $req->bindValue(":realm", $quest[7]);
+            $req->bindValue(":user_id", $quest[8]);
+            $req->bindValue(":image", $quest[9]);  
         
-            $req->execute();
+            $req->execute(["quest_id" => $quest_id]);
         }
 
         public function getByID(int $quest_id) {
