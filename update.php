@@ -6,6 +6,10 @@
 
         $error= NULL;
 
+        $quest = $QuestManager->getByID($_GET["id"]);
+        var_dump($quest->getName());
+
+
         if($_POST) {
             $name=$_POST["name"];
             $minimum_level=$_POST["minimum_level"];
@@ -37,7 +41,7 @@
                             if(move_uploaded_file( $_FILES["image"]["tmp_name"], $targetFile)) {
                                 $imageName=$fileName;
                                 $QuestManager->update($_GET["id"], [$name, $minimum_level, $maximum_level, $number_players, $starting_area, $starting_npc, $reward, $realm, $userId, $imageName]);
-                                echo "<p class='alert alert-success'>La quête a bien été ajoutée</p>";
+                                echo "<p class='alert alert-success'>La quête a bien été modifiée</p>";
                             } else {
                                 throw new Exception("Une erreur est survenue.");
                             }
@@ -67,30 +71,30 @@
         <form method="POST" enctype="multipart/form-data">
             
                 <label for="name" class="form-label">Quest name :</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name" name="name">
+                <input type="text" class="form-control" id="name" aria-describedby="name" name="name" value="<?php echo $quest->getName()?>">
             
             
                 <label for="minimum_level" class="form-label">Minimum level : </label>
-                <input type="number" class="form-control" id="minimum_level" min=1 max=50 name="minimum_level">
+                <input type="number" class="form-control" id="minimum_level" min=1 max=50 name="minimum_level" value="<?php echo $quest->getminimum_level()?>">
             
             
                 <label for="maximum_level" class="form-label">Maximum level :</label>
-                <input type="number" class="form-control" id="maximum_level" min=1 max=50 name="maximum_level">
+                <input type="number" class="form-control" id="maximum_level" min=1 max=50 name="maximum_level" value="<?php echo $quest->getmaximum_level()?>">
 
                 <label for="number_players" class="form-label">Required number of players :</label>
-                <input type="number" class="form-control" id="number_players" name="number_players">
+                <input type="number" class="form-control" id="number_players" name="number_players" value="<?php echo $quest->getnumber_players()?>">
 
                 <label for="starting_area" class="form-label">Quest area :</label>
-                <input type="text" class="form-control" id="starting_area" name="starting_area" placeholder="Where can the quest be taken ?">
+                <input type="text" class="form-control" id="starting_area" name="starting_area" placeholder="Where can the quest be taken ?" value="<?php echo $quest->getstarting_area()?>">
 
                 <label for="starting_npc" class="form-label">Which NPC hands out the quest ?</label>
-                <input type="text" class="form-control" id="starting_npc" name="starting_npc">
+                <input type="text" class="form-control" id="starting_npc" name="starting_npc" value="<?php echo $quest->getstarting_npc()?>">
 
                 <label for="reward" class="form-label">Reward :</label>
-                <input type="text" class="form-control" id="reward" name="reward" placeholder="Experience, objects ?">
+                <input type="text" class="form-control" id="reward" name="reward" placeholder="Experience, objects ?" value="<?php echo $quest->getReward()?>">
 
                 <label for="realm" class="form-label">Realm :</label>
-                <select class="form-select" aria-label="Default select example" name="realm">
+                <select class="form-select" aria-label="Default select example" name="realm" value="<?php echo $quest->getRealm()?>">
                     <option selected>Select a realm</option>
                     <option value="Albion">Albion</option>
                     <option value="Midgard">Midgard</option>

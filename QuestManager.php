@@ -40,18 +40,7 @@ class QuestManager {
         }
 
         public function update(int $quest_id, array $quest) {
-            $req = $this->db->prepare("UPDATE `quest` SET 
-            name = :name, 
-            minimum_level = :minimum_level, 
-            maximum_level = :maximum_level, 
-            number_players = :number_players, 
-            starting_area = :starting_area, 
-            starting_npc = :starting_npc, 
-            reward= :reward, 
-            realm = :realm, 
-            user_id = :user_id, 
-            image = :image 
-            WHERE quest_id = :quest_id" );
+            $req = $this->db->prepare("UPDATE `quest` SET `name` = :name, `minimum_level` = :minimum_level, `maximum_level` = :maximum_level , `number_players` = :number_players, `starting_area` = :starting_area, `starting_npc` = :starting_npc, `reward` = :reward, `realm` = :realm, `image` = :image WHERE `quest`.`quest_id` = :quest_id");
 
 
             $req->bindValue(":name", $quest[0]);
@@ -63,7 +52,8 @@ class QuestManager {
             $req->bindValue(":reward", $quest[6]); 
             $req->bindValue(":realm", $quest[7]);
             $req->bindValue(":user_id", $quest[8]);
-            $req->bindValue(":image", $quest[9]);  
+            $req->bindValue(":image", $quest[9]);
+            
         
             $req->execute(["quest_id" => $quest_id]);
         }
