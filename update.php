@@ -7,7 +7,7 @@
         $error= NULL;
 
         $quest = $QuestManager->getByID($_GET["id"]);
-        var_dump($quest->getName());
+        
 
 
         if($_POST) {
@@ -20,43 +20,53 @@
             $reward=$_POST["reward"];
             $realm=$_POST["realm"];
             $userId=1;
+            $quest_id = $_GET["id"];
         
-                try {
-                    //Check size size
-                    if ($_FILES["image"]['size'] < 2000000 ) {
-    
-                        
-                        $fileName = $_FILES["image"]["name"];
-                        //If !exist upload folder, create it
-                        if (!is_dir("upload/")) {
-                            mkdir("upload/");
-                        }
-                        $targetFile = "upload/{$fileName}";
-                        $fileExtension = pathinfo($targetFile, PATHINFO_EXTENSION);
+            try {
+                if ( strlen($name) < 4 || $minimum_level < 1 || $maximum_level < $minimum_level || $maximum_level > 50 || $number_players < 1 || strlen($starting_area) < 4 || !in_array($realm, ["Midgard", "Albion", "Hibernia"])) {
+                    throw new Exception("Les données saisies ne sont pas valides.");
+                } else {
+                    
+                        //Check size size
+                        if ($_FILES["image"]['size'] < 4000000 ) {
         
-                        //Check file type
-                        $acceptedExtensions = ["png", "jpg", "jpeg", "webp"];
-                        if (in_array(strtolower($fileExtension), $acceptedExtensions)) {
-                            //Attempt to move file to upload folder
-                            if(move_uploaded_file( $_FILES["image"]["tmp_name"], $targetFile)) {
-                                $imageName=$fileName;
-                                $QuestManager->update($_GET["id"], [$name, $minimum_level, $maximum_level, $number_players, $starting_area, $starting_npc, $reward, $realm, $userId, $imageName]);
-                                echo "<p class='alert alert-success'>La quête a bien été modifiée</p>";
+                            
+                            $fileName = $_FILES["image"]["name"];
+                            //If !exist upload folder, create it
+                            if (!is_dir("upload/")) {
+                                mkdir("upload/");
+                            }
+                            $targetFile = "upload/{$fileName}";
+                            $fileExtension = pathinfo($targetFile, PATHINFO_EXTENSION);
+            
+                            //Check file type
+                            $acceptedExtensions = ["png", "jpg", "jpeg", "webp"];
+                            if (in_array(strtolower($fileExtension), $acceptedExtensions)) {
+                                //Attempt to move file to upload folder
+                                if(move_uploaded_file( $_FILES["image"]["tmp_name"], $targetFile)) {
+                                    $imageName=$fileName;
+                                    $QuestManager->update([$name, $minimum_level, $maximum_level, $number_players, $starting_area, $starting_npc, $reward, $realm, $userId, $imageName, $quest_id]);
+
+                                    //Fonction de redirection vers index.php
+                                header("Location: index.php");
+                                } else {
+                                    throw new Exception("Une erreur est survenue.");
+                                }
                             } else {
-                                throw new Exception("Une erreur est survenue.");
+                                throw new Exception("Le format du fichier n'est pas valide, formats pris en charge : png, jpg, jpeg et webp");
                             }
                         } else {
-                            throw new Exception("Le format du fichier n'est pas valide, formats pris en charge : png, jpg, jpeg et webp");
-                        }
-                    } else {
-                        throw new Exception("Le fichier ne peut excéder 2 MO.");
-                    }
-    
-                } catch (Exception $e) {
-                    $error = $e->getMessage();
+                            throw new Exception("Le fichier ne peut excéder 2 MO.");
+                        
+        
+                    } 
                 }
-            
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+            }
         }
+                
+            
         
     ?>
 
@@ -94,8 +104,8 @@
                 <input type="text" class="form-control" id="reward" name="reward" placeholder="Experience, objects ?" value="<?php echo $quest->getReward()?>">
 
                 <label for="realm" class="form-label">Realm :</label>
-                <select class="form-select" aria-label="Default select example" name="realm" value="<?php echo $quest->getRealm()?>">
-                    <option selected>Select a realm</option>
+                <select class="form-select" aria-label="Default select example" name="realm">
+                    <option selected ><?php echo $quest->getRealm()?></option>
                     <option value="Albion">Albion</option>
                     <option value="Midgard">Midgard</option>
                     <option value="Hibernia">Hibernia</option>
@@ -103,6 +113,7 @@
                 
                 <label for="reward" class="form-label">Image :</label>
                 <input type="file" name="image" id="image" name="image" class="form-control">
+                <img  src="upload/<?= $quest->getImage();?>" class="card-img-top w-25 p-3" alt="default daoc logo">
             
                 <button type="submit" class="btn btn-primary">Update</button>
             

@@ -1,6 +1,8 @@
 <?php
 require 'Quest.php';
 
+
+
 //Class permettant la connexion à la bdd
 class QuestManager {
     private $db;
@@ -34,15 +36,17 @@ class QuestManager {
             $req->bindValue(":realm", $quest[7]);
             $req->bindValue(":user_id", $quest[8]);
             $req->bindValue(":image", $quest[9]);
+
             
             //Execution de la requête
             $req->execute();
         }
 
-        public function update(int $quest_id, array $quest) {
-            $req = $this->db->prepare("UPDATE `quest` SET `name` = :name, `minimum_level` = :minimum_level, `maximum_level` = :maximum_level , `number_players` = :number_players, `starting_area` = :starting_area, `starting_npc` = :starting_npc, `reward` = :reward, `realm` = :realm, `image` = :image WHERE `quest`.`quest_id` = :quest_id");
+        public function update(array $quest) {
+            $req = $this->db->prepare("UPDATE `quest` SET name = :name, minimum_level = :minimum_level, maximum_level = :maximum_level, number_players = :number_players, starting_area = :starting_area, starting_npc = :starting_npc, reward = :reward, realm = :realm, user_id = :user_id, image = :image WHERE quest_id = :quest_id");
 
-
+            //On hydrate ces données
+            // $req->bindValue(":quest_id", null);
             $req->bindValue(":name", $quest[0]);
             $req->bindValue(":minimum_level", $quest[1]); 
             $req->bindValue(":maximum_level", $quest[2]); 
@@ -53,10 +57,14 @@ class QuestManager {
             $req->bindValue(":realm", $quest[7]);
             $req->bindValue(":user_id", $quest[8]);
             $req->bindValue(":image", $quest[9]);
+            $req->bindValue(":quest_id", $quest[10]);
+
             
-        
-            $req->execute(["quest_id" => $quest_id]);
+            //Execution de la requête
+            $req->execute();
         }
+
+        
 
         public function getByID(int $quest_id) {
             $req = $this->db->prepare("SELECT * FROM `quest` WHERE quest_id = :quest_id");
