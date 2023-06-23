@@ -1,9 +1,6 @@
 <?php
     require_once('layout/header.php');
-    require_once('QuestManager.php');
 
-    $manager = new QuestManager;
-    $AllQuests = $manager->getAllQuests();
 ?>
 <div>
     <div class=" banners d-flex justify-content-evenly align-items-center">
