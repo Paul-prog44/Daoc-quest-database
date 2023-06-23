@@ -1,4 +1,6 @@
-<?php var_dump($_SERVER['REQUEST_URI']);
+<?php 
+
+//Identify page to update title
 $currentPage = "";
 if (str_contains($_SERVER['REQUEST_URI'], "index")) {
     $currentPage = "Daoc Quest Database";
@@ -12,6 +14,8 @@ if (str_contains($_SERVER['REQUEST_URI'], "index")) {
     $currentPage = "Hibernia Quests";
 } else if (str_contains($_SERVER['REQUEST_URI'], "allQuests")) {
     $currentPage = "All Quests";
+} else if (str_contains($_SERVER['REQUEST_URI'], "update")) {
+    $currentPage = "Update a quest";
 } 
 ?>
 
