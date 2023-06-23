@@ -1,5 +1,5 @@
 <?php
-        require_once('header.php');
+        require_once('layout/header.php');
         require_once('QuestManager.php');
 
         $manager = new QuestManager;
@@ -22,3 +22,4 @@
         <?php endforeach ?>
     </main>
     <a href="./create.php" class="btn btn-success m-5">Add a quest</a>
+    <?php require_once("layout/footer.php");?>

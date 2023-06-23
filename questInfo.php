@@ -27,3 +27,4 @@ $quest = $manager->getByID($QuestId);
 <a href="./delete.php?id=<?= $quest->getQuest_iD()?>" class="btn btn-danger">Delete</a>
 <a href="./update.php?id=<?= $quest->getQuest_iD()?>" class="btn btn-success">Update</a>
 
+<?php require_once("layout/footer.php");?>

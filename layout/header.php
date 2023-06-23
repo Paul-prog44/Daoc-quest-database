@@ -1,3 +1,20 @@
+<?php var_dump($_SERVER['REQUEST_URI']);
+$currentPage = "";
+if (str_contains($_SERVER['REQUEST_URI'], "index")) {
+    $currentPage = "Daoc Quest Database";
+} else if (str_contains($_SERVER['REQUEST_URI'], "create")) {
+    $currentPage = "Add a quest";
+} else if (str_contains($_SERVER['REQUEST_URI'], "albion")) {
+    $currentPage = "Albion Quests";
+}  else if (str_contains($_SERVER['REQUEST_URI'], "midgard")) {
+    $currentPage = "Midgard Quests";
+}  else if (str_contains($_SERVER['REQUEST_URI'], "hibernia")) {
+    $currentPage = "Hibernia Quests";
+} else if (str_contains($_SERVER['REQUEST_URI'], "allQuests")) {
+    $currentPage = "All Quests";
+} 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +23,7 @@
     <link href="styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <title>Daoc quest database</title>
+    <title><?= $currentPage ?></title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">

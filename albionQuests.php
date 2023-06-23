@@ -1,6 +1,6 @@
 <?php
 
-require('header.php');
+require('layout/header.php');
 require_once('QuestManager.php');
 
         $manager = new QuestManager;
@@ -24,5 +24,8 @@ require_once('QuestManager.php');
                     </div>
                 </div>
             
-        <?php endforeach ?>
-    </main>
+<?php endforeach; ?>
+</main>
+<?php
+    require_once('layout/footer.php');
+?>    
