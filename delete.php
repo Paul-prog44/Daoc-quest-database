@@ -1,6 +1,6 @@
 <?php
 
-require_once("header.php");
+require_once("layout/header.php");
 require("QuestManager.php");
 
 $QuestManager = new QuestManager;

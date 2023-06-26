@@ -19,7 +19,7 @@
         
                 try {
                     //Check size size
-                    if ($_FILES["image"]['size'] < 2000000 ) {
+                    if ($_FILES["image"]['size'] < 4000000 ) {
     
                         
                         $fileName = $_FILES["image"]["name"];
@@ -45,7 +45,7 @@
                             throw new Exception("Le format du fichier n'est pas valide, formats pris en charge : png, jpg, jpeg et webp");
                         }
                     } else {
-                        throw new Exception("Le fichier ne peut excéder 2 MO.");
+                        throw new Exception("Le fichier ne peut excéder 4 MO.");
                     }
     
                 } catch (Exception $e) {
