@@ -27,12 +27,12 @@ class QuestManager {
             //On hydrate ces données
             // $req->bindValue(":quest_id", null);
             $req->bindValue(":name", $quest[0]);
-            $req->bindValue(":minimum_level", $quest[1]); 
-            $req->bindValue(":maximum_level", $quest[2]); 
-            $req->bindValue(":number_players", $quest[3]); 
-            $req->bindValue(":starting_area", $quest[4]); 
-            $req->bindValue(":starting_npc", $quest[5]); 
-            $req->bindValue(":reward", $quest[6]); 
+            $req->bindValue(":minimum_level", $quest[1]);
+            $req->bindValue(":maximum_level", $quest[2]);
+            $req->bindValue(":number_players", $quest[3]);
+            $req->bindValue(":starting_area", $quest[4]);
+            $req->bindValue(":starting_npc", $quest[5]);
+            $req->bindValue(":reward", $quest[6]);
             $req->bindValue(":realm", $quest[7]);
             $req->bindValue(":user_id", $quest[8]);
             $req->bindValue(":image", $quest[9]);
@@ -48,12 +48,12 @@ class QuestManager {
             //On hydrate ces données
             // $req->bindValue(":quest_id", null);
             $req->bindValue(":name", $quest[0]);
-            $req->bindValue(":minimum_level", $quest[1]); 
-            $req->bindValue(":maximum_level", $quest[2]); 
-            $req->bindValue(":number_players", $quest[3]); 
-            $req->bindValue(":starting_area", $quest[4]); 
-            $req->bindValue(":starting_npc", $quest[5]); 
-            $req->bindValue(":reward", $quest[6]); 
+            $req->bindValue(":minimum_level", $quest[1]);
+            $req->bindValue(":maximum_level", $quest[2]);
+            $req->bindValue(":number_players", $quest[3]);
+            $req->bindValue(":starting_area", $quest[4]);
+            $req->bindValue(":starting_npc", $quest[5]);
+            $req->bindValue(":reward", $quest[6]);
             $req->bindValue(":realm", $quest[7]);
             $req->bindValue(":user_id", $quest[8]);
             $req->bindValue(":image", $quest[9]);
